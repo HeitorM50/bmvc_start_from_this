@@ -21,10 +21,36 @@ def helper(info= None):
 
 #-----------------------------------------------------------------------------
 # Suas rotas aqui:
-@app.route('/pagina')
-def action_pagina():
-    return ctl.render('pagina')
+@app.route('/pagina', methods=['GET'])
+@app.route('/pagina/<parameter>', methods=['GET'])
+def action_pagina(parameter=None):
+    if not parameter:
+        return ctl.render('pagina')
+    else:
+        return ctl.render('pagina',parameter)
+    
+@app.route('/portal', method='GET')
+def login():
+    return ctl.render('portal')
 
+
+@app.route('/portal', method='POST')
+def action_portal():
+    username = request.forms.get('username')
+    password = request.forms.get('password')
+    session_id, username= ctl.authenticate_user(username, password)
+    if session_id:
+        response.set_cookie('session_id', session_id, httponly=True, \
+        secure=True, max_age=3600)
+        return redirect(f'/pagina/{username}')
+    else:
+        return redirect('/portal')
+
+@app.route('/logout', method='POST')
+def logout():
+      ctl.logout_user()
+      response.delete_cookie('session_id')
+      return redirect('/helper')
 
 #-----------------------------------------------------------------------------
 
