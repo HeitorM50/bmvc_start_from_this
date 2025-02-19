@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página de Login</title>
+  <link rel="stylesheet" href="/static/css/portal.css">
 </head>
 <body>
-    <h1>Login</h1>
-    <form action="/portal" method="post">
-        <label for="username">Nome:</label>
-        <input id="username" name="username" type="text" required /><br>
+  <div class="login-container">
+    <h2>Login</h2>
+    <form action="#" method="POST">
+      <label for="username">Usuário</label>
+      <input type="text" id="username" name="username" placeholder="Digite seu usuário" required>
 
-        <label for="password">Senha:</label>
-        <input id="password" name="password" type="password" required /><br>
+      <label for="password">Senha</label>
+      <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
 
-        <input value="Login" type="submit" />
+      <button type="submit">Entrar</button>
     </form>
-    <form action="/logout" method="post">
-        <button type="submit">Logout</button>
-    </form>
+  </div>
 </body>
 </html>
